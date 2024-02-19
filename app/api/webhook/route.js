@@ -1,6 +1,5 @@
 import { Webhook } from "svix"
 import { headers } from "next/headers"
-import { WebhookEvent } from "@clerk/nextjs/server"
 import { createOrUpdateUser, deleteUser } from "../../../lib/actions/user"
 
 export async function POST(req) {
@@ -55,6 +54,7 @@ export async function POST(req) {
     // console.log("Webhook body:", body)
     //Handle the event
     const eventType = evt?.type
+
     if (eventType === "user.created" || eventType === "user.updated") {
         const { id, first_name, last_name, image_url, email_addresses, username } = evt?.data
 
