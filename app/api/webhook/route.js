@@ -52,7 +52,8 @@ export async function POST(req) {
 
     // console.log(`Webhook with and ID of ${id} and type of ${eventType}`)
     // console.log("Webhook body:", body)
-    //Handle the event
+
+    // Handle the event
     const eventType = evt?.type
 
     if (eventType === "user.created" || eventType === "user.updated") {
@@ -64,8 +65,8 @@ export async function POST(req) {
             return new Response("User is created or updated", {
                 status: 200,
             })
-        } catch (error) {
-            console.log("Error creating or updating user:", error)
+        } catch (err) {
+            console.error("Error creating or updating user:", err)
             return new Response("Error occured", {
                 status: 500,
             })
@@ -80,8 +81,8 @@ export async function POST(req) {
             return new Response("User is deleted", {
                 status: 200,
             })
-        } catch (error) {
-            console.log("Error deleting user:", error)
+        } catch (err) {
+            console.error("Error deleting user:", err)
             return new Response("Error occured", {
                 status: 500,
             })
