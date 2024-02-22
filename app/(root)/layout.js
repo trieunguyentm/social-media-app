@@ -1,7 +1,6 @@
 import { ClerkProvider } from "@clerk/nextjs"
 import "../globals.css"
 import { Inter } from "next/font/google"
-
 import LeftSideBar from "../../components/layout/LeftSideBar"
 import MainContainer from "../../components/layout/MainContainer"
 import RightSideBar from "../../components/layout/RightSideBar"
@@ -21,9 +20,7 @@ const RootLayout = ({ children }) => {
                 <body className={`${inter.className} bg-purple-2`}>
                     <main className="flex flex-row">
                         <LeftSideBar />
-                        <MainContainer>
-                            {children}
-                        </MainContainer>
+                        <MainContainer>{children}</MainContainer>
                         <RightSideBar />
                     </main>
                     <BottomBar />
