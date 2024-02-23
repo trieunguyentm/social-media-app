@@ -24,7 +24,7 @@ const TopBar = () => {
                 <SearchIcon
                     className="search-icon"
                     onClick={() => {
-                        alert("Hello")
+                        if (search) router.push(`/search/posts/${search}`)
                     }}
                 />
             </div>
