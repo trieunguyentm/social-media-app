@@ -1,5 +1,6 @@
 import { connectToDB } from "../../../../lib/mongodb/mongoose"
 import Post from "../../../../lib/models/Post"
+import { writeFile } from "fs/promises"
 
 export const GET = async (req, { params }) => {
     try {
