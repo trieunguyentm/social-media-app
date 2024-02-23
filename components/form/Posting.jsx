@@ -5,7 +5,7 @@ import Image from "next/image"
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/navigation"
 
-const Posting = ({ post }) => {
+const Posting = ({ post, apiEndPoint }) => {
     const {
         register,
         handleSubmit,
@@ -18,19 +18,24 @@ const Posting = ({ post }) => {
     const router = useRouter()
 
     const handlePublish = async (data) => {
-        console.log(data)
+        // console.log(data)
         try {
             const postForm = new FormData()
             postForm.append("creatorId", data.creatorId)
             postForm.append("caption", data.caption)
             postForm.append("tag", data.tag)
             if (!data?.postPhoto || data?.postPhoto.length === 0) {
-                console.log("Chưa cung cấp ảnh ")
+                console.log("Chưa cung cấp ảnh")
+                alert("Chưa cung cấp ảnh")
                 return
             }
-            postForm.append("postPhoto", data.postPhoto[0])
+            if (typeof data.postPhoto !== "string") {
+                postForm.append("postPhoto", data.postPhoto[0])
+            } else {
+                postForm.append("postPhoto", data.postPhoto)
+            }
 
-            const response = await fetch(`api/post/new`, {
+            const response = await fetch(`${apiEndPoint}`, {
                 method: "POST",
                 body: postForm,
             })

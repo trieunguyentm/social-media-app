@@ -57,7 +57,7 @@ const PostCard = ({ post, creator, loggedInUser }) => {
                     <p className="text-light-1">{post.likes.length}</p>
                 </div>
                 {loggedInUser.id !== creator.clerkId &&
-                    (isSaved ? (
+                    (!isSaved ? (
                         <BookmarkBorder sx={{ color: "white", cursor: "pointer" }} />
                     ) : (
                         <Bookmark sx={{ color: "yellow", cursor: "pointer" }} />
