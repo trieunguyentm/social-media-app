@@ -41,7 +41,7 @@ const LeftSideBar = () => {
 
             <div className="flex flex-col gap-4">
                 <div className="flex flex-col gap-1 items-center text-light-1">
-                    <Link href="/">
+                    <Link href={`/profile/${userdata._id}/posts`}>
                         <Image
                             src={userdata?.profilePhoto}
                             alt="avatar"

@@ -16,7 +16,6 @@ const SearchPeople = () => {
     const getSearchedUsers = async () => {
         const response = await fetch(`/api/user/search/${query}`)
         const data = await response.json()
-
         setSearchedUser(data)
         setLoading(false)
     }
@@ -40,9 +39,7 @@ const SearchPeople = () => {
                 </Link>
             </div>
             {searchedUser.map((user) => (
-                // <div>{user.firstName}</div>
-                // <PostCard key={post._id} post={post} creator={post.creator} loggedInUser={user} />
-                <UserCard userData={user} />
+                <UserCard key={user._id} userData={user} />
             ))}
         </div>
     )

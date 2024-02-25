@@ -1,17 +1,59 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import BorderColorIcon from "@mui/icons-material/BorderColor"
 import { Bookmark, BookmarkBorder, Favorite, FavoriteBorder } from "@mui/icons-material"
 
-const PostCard = ({ post, creator, loggedInUser }) => {
-    const [isLiked, setIsLiked] = useState(false)
-    const [isSaved, setIsSaved] = useState(false)
+const PostCard = ({ post, creator, loggedInUser, update }) => {
+    const [userData, setUserData] = useState({})
+
+    const getUser = async () => {
+        const response = await fetch(`/api/user/${loggedInUser.id}`)
+        const data = await response.json()
+        setUserData(data)
+    }
+
+    useEffect(() => {
+        if (loggedInUser) {
+            getUser()
+        }
+    }, [])
+
+    const isSaved = userData?.savedPosts?.find(
+        (item) => item._id.toString() === post._id.toString(),
+    )
+    const isLiked = userData?.likedPosts?.find(
+        (item) => item._id.toString() === post._id.toString(),
+    )
+
+    const handleSave = async () => {
+        const response = await fetch(`/api/user/${loggedInUser.id}/save/${post._id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        const data = await response.json()
+        setUserData(data)
+        update()
+    }
+
+    const handleLike = async () => {
+        const response = await fetch(`/api/user/${loggedInUser.id}/like/${post._id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        const data = await response.json()
+        setUserData(data)
+        update()
+    }
 
     return (
         <div className="w-full max-w-xl rounded-lg flex flex-col gap-4 bg-dark-1 p-5 max-sm:gap-2 ">
             <div className="flex justify-between">
-                <Link href={`profile/${creator._id}`}>
+                <Link href={`profile/${creator._id}/posts`}>
                     <div className="flex gap-3 items-center">
                         <Image
                             src={creator.profilePhoto}
@@ -49,18 +91,27 @@ const PostCard = ({ post, creator, loggedInUser }) => {
             <div className="flex justify-between">
                 <div className="flex gap-2 items-center">
                     {!isLiked ? (
-                        <FavoriteBorder sx={{ color: "white", cursor: "pointer" }} />
+                        <FavoriteBorder
+                            sx={{ color: "white", cursor: "pointer" }}
+                            onClick={handleLike}
+                        />
                     ) : (
-                        <Favorite sx={{ color: "red", cursor: "pointer" }} />
+                        <Favorite sx={{ color: "red", cursor: "pointer" }} onClick={handleLike} />
                     )}
 
                     <p className="text-light-1">{post.likes.length}</p>
                 </div>
                 {loggedInUser.id !== creator.clerkId &&
                     (!isSaved ? (
-                        <BookmarkBorder sx={{ color: "white", cursor: "pointer" }} />
+                        <BookmarkBorder
+                            sx={{ color: "white", cursor: "pointer" }}
+                            onClick={handleSave}
+                        />
                     ) : (
-                        <Bookmark sx={{ color: "yellow", cursor: "pointer" }} />
+                        <Bookmark
+                            sx={{ color: "yellow", cursor: "pointer" }}
+                            onClick={handleSave}
+                        />
                     ))}
             </div>
         </div>

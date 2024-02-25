@@ -1,4 +1,10 @@
-import { Home, AddPhotoAlternateOutlined, GroupOutlined, BookmarksOutlined, FavoriteBorder } from "@mui/icons-material"
+import {
+    Home,
+    AddPhotoAlternateOutlined,
+    GroupOutlined,
+    BookmarksOutlined,
+    FavoriteBorder,
+} from "@mui/icons-material"
 
 export const sidebarLinks = [
     {
@@ -60,5 +66,20 @@ export const pageTitles = [
     {
         url: "/liked-posts",
         title: "Liked Posts",
+    },
+]
+
+export const tabs = [
+    {
+        link: "posts",
+        name: "Posts",
+    },
+    {
+        link: "followers",
+        name: "Followers",
+    },
+    {
+        link: "following",
+        name: "Following",
     },
 ]

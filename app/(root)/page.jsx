@@ -27,7 +27,13 @@ const Home = () => {
     ) : (
         <div className="flex flex-col gap-10">
             {feedPost.map((post) => (
-                <PostCard key={post._id} post={post} creator={post.creator} loggedInUser={user} />
+                <PostCard
+                    key={post._id}
+                    post={post}
+                    creator={post.creator}
+                    loggedInUser={user}
+                    update={getFeedPost}
+                />
             ))}
         </div>
     )
