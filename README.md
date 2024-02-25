@@ -5,6 +5,7 @@
 * Sử dụng thư viện Clerk cho việc xác thực người dùng
 ## Deloy
 * Sử dụng vercel
+* Link demo: https://social-media-app-peach-chi.vercel.app/
 ## Cài đặt
 * Clone repository
 ```git clone https://github.com/trieunguyentm/social-media-app```
