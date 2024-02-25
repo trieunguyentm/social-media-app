@@ -25,6 +25,9 @@
 * Chạy chương trình
   ``` yarn dev ``` hoặc ```npm run dev```
 <img width="1512" alt="image" src="https://github.com/trieunguyentm/social-media-app/assets/100562821/83f61a83-6cfd-4b94-8073-9071bb902c50">
-
+## Khắc phục thêm
+* Vấn đề tạo post: Do khi deloy trên Vercel, không cho phép write dữ liệu nên ảnh không thể thêm vào public/uploads -> Lỗi. Cần tải ảnh lên một Storage Cloud, lấy URL và lưu vào database
+* Cải thiện điểm performace
+* Khi like, save, follow...(hành động ấn icon) cần chuyển đổi màu icon ngay để tăng trải nghiệm người dùng, không đợi API hoàn thành xong rồi mới đổi màu
 
   
