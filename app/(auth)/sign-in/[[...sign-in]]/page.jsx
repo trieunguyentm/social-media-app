@@ -2,7 +2,11 @@ import { SignIn } from "@clerk/nextjs"
 import { dark } from "@clerk/themes"
 
 const Page = () => {
-    return <SignIn appearance={{ baseTheme: dark }} />
+    return (
+        <div className="flex justify-center items-center h-screen">
+            <SignIn appearance={{ baseTheme: dark }} />
+        </div>
+    )
 }
 
 export default Page
